@@ -23,35 +23,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth'])->group(function(){
 
-
 //roles
-Route::post('roles/store','RoleController@store')->name('roles.store')
-       ->middleware('permission:roles.create');
-
-Route::get('roles','RoleController@index')->name('roles.index')
-       ->middleware('permission:roles.index');
-
-//ver form creacion
-Route::get('roles/create','RoleController@create')->name('roles.create')
-       ->middleware('permission:roles.create');
-
-Route::put('roles/{role}','RoleController@update')->name('roles.update')
-       ->middleware('permission:roles.edit');
-
-Route::get('roles/{role}','RoleController@show')->name('roles.show')
-       ->middleware('permission:roles.show');
-
-Route::delete('roles/{role}','RoleController@destroy')->name('roles.destroy')
-       ->middleware('permission:roles.destroy');
-
-//ver form edicion
-Route::get('roles/{role}/edit','RoleController@edit')->name('roles.edit')
-       ->middleware('permission:roles.edit');
-
-
-
-
-
+Route::resource('roles','RoleController');
 
 
 //productos
@@ -62,7 +35,7 @@ Route::get('products','ProductController@index')->name('products.index')
        ->middleware('permission:products.index');
 
 //ver form creacion
-Route::get('products/create','ProductController@create')->name('products.usercreate')
+Route::get('products/create','ProductController@create')->name('products.create')
        ->middleware('permission:products.create');
 
 Route::put('products/{product}','ProductController@update')->name('products.update')
